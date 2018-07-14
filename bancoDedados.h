@@ -16,8 +16,9 @@ class bancoDedados {
         
         
     public:
-        void inserir(string plate);
-        void buscar(string plate);
+        void Inserir(string plate);
+        void Buscar(string plate);
+        void Deletar(string plate);
         bancoDedados();
         virtual ~bancoDedados();
 

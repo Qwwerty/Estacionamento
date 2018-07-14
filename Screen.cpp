@@ -61,7 +61,7 @@ void Screen::Menu() {
                 cout << "INSERT TO VEHICLE PLATE: " << endl;
                 cin >> plate;
                 ObjectPlate->SetPlaca(plate);
-                connection->inserir(plate);
+                connection->Inserir(plate);
                 //Apenas da um pause na tela, para o usuario ver que ocorreu tudo bem.
                 cin.ignore().get();
                 break;
@@ -79,9 +79,22 @@ void Screen::Menu() {
                 cout << "SEARCH VEHICLE PLATE: " << endl;
                 cin >> plate;
                 ObjectPlate->SetPlaca(plate);
-                connection->buscar(plate);
+                connection->Buscar(plate);
+                
                 //Apenas da um pause na tela, para o usuario ver que ocorreu tudo bem.
                 cin.ignore().get();
+                
+                //Segundo menu
+                string aux;
+                cout << "DESEJA RETIRAR O VEICULO:  (SIM/NAO)" << endl;
+                cin >> aux;
+                toupper(aux);
+                
+                
+                if(aux == "SIM"){
+                    connection->Deletar(plate);
+                }
+                
                 break;
             } 
               default:{

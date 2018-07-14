@@ -13,7 +13,7 @@ bancoDedados::bancoDedados() {
 bancoDedados::~bancoDedados() {
 }
 
-void bancoDedados::inserir(string plate){
+void bancoDedados::Inserir(string plate){
     
     //Starting connection with database
     mysql_init(&connection);
@@ -37,7 +37,7 @@ void bancoDedados::inserir(string plate){
     
 }
 
-void bancoDedados::buscar(string plate){
+void bancoDedados::Buscar(string plate){
     
     mysql_init(&connection);
     
@@ -53,13 +53,31 @@ void bancoDedados::buscar(string plate){
     strcpy(dados, query.c_str());
     
     if(mysql_query(&connection, dados))
-        cout << "\nSUCCESS SEARCH!!!\n";
+        cout << "\nBUSCA COM SUCESSO!!!\n";
     
     result = mysql_store_result(&connection);
     if((linha = mysql_fetch_row(result)))
-            cout << "FOUND WITH SUCCESS!!\n"<< endl;
+            cout << "ENCONTRADO COM SUCESSO!!\n"<< endl;
     //puts(linha[0]);
     
     
+    
+}
+
+void bancoDedados::Deletar(string plate){
+    
+    mysql_init(&connection);
+    
+    if(mysql_real_connect(&connection, "127.0.0.1", "root", "rhalf4561", "estacionamento", 0, NULL, 0)){
+        string query = "delete placa from carros where placa = '" + plate"';";
+        
+        char dados[query.length()];
+        strcpy(dados, query.c_str());
+        
+        if(mysql_query(&connection, dados)){
+                cout << "DELETADO COM SUCESSO!!!\n";
+        }
+    }
+    mysql_close(&connection);
     
 }
